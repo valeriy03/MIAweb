@@ -5,37 +5,176 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Descargar Aplicación</title>
     <style>
+        /* Estilos generales */
+        :root {
+            --bg-color-light: #f4f4f9;
+            --text-color-light: #333;
+            --bg-color-dark: #1e1e2f;
+            --text-color-dark: #f4f4f9;
+            --button-bg-light: #007BFF;
+            --button-bg-dark: #0056b3;
+        }
+
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+            transition: background-color 0.3s, color 0.3s;
         }
+
         .container {
-            margin-top: 20%;
+            margin: 5% auto;
+            width: 90%;
+            max-width: 400px;
         }
+
+        .logo {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            margin: 0 auto 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: inherit;
+        }
+
         .button {
             display: inline-block;
             padding: 15px 25px;
             font-size: 16px;
             color: #fff;
-            background-color: #007BFF;
+            background-color: var(--button-bg-light);
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;
+            width: 100%;
+            max-width: 300px;
         }
+
         .button:hover {
-            background-color: #0056b3;
+            background-color: var(--button-bg-dark);
+        }
+
+        /* Botón de modo oscuro */
+        .toggle-theme {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: 2px solid var(--text-color-light);
+            color: var(--text-color-light);
+            padding: 10px 15px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        .toggle-theme:hover {
+            background-color: var(--text-color-light);
+            color: var(--bg-color-light);
+        }
+
+        /* Modo oscuro */
+        body.dark {
+            background-color: var(--bg-color-dark);
+            color: var(--text-color-dark);
+        }
+
+        body.dark .button {
+            background-color: var(--button-bg-dark);
+        }
+
+        body.dark .toggle-theme {
+            color: var(--text-color-dark);
+            border-color: var(--text-color-dark);
+        }
+
+        body.dark .toggle-theme:hover {
+            background-color: var(--text-color-dark);
+            color: var(--bg-color-dark);
+        }
+
+        /* Pie de página */
+        footer {
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+            font-size: 14px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        footer a {
+            color: var(--button-bg-light);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        body.dark footer {
+            background-color: var(--bg-color-dark);
+            color: var(--text-color-dark);
+        }
+
+        body.dark footer a {
+            color: var(--button-bg-dark);
+        }
+
+        /* Descripción */
+        .description {
+            margin: 20px 0;
+            font-size: 16px;
+            line-height: 1.5;
+            color: inherit;
         }
     </style>
 </head>
 <body>
+    <!-- Botón para cambiar de tema -->
+    <button class="toggle-theme" onclick="toggleTheme()">Modo Oscuro</button>
+
     <div class="container">
-        <h1>¡Descarga nuestra aplicación!</h1>
+        <!-- Logo -->
+        <img class="logo" src="ic_launcher.webp" alt="Logo de la aplicación">
+        <!-- Texto debajo del logo -->
+        <div class="logo-text">MIA</div>
+
+        <!-- Descripción de la aplicación -->
+        <p class="description">La aplicación MIA (Mi Inteligencia Artificial) es una aplicación para iOS y Android y está diseñada para permitir a los usuarios explorar, guardar y gestionar información sobre distintas inteligencias artificiales (IA). Además, los usuarios pueden mantenerse actualizados con las noticias más recientes relacionadas con las IAs, gestionar su perfil personal y acceder fácilmente a los detalles de las tecnologías que más les interesan.</p>
+        <h1 style="margin-top: 50px; padding-top: 30px;">¡Descarga nuestra aplicación!</h1>
         <p>Haz clic en el botón de abajo para descargar la aplicación en tu dispositivo Android.</p>
+        <!-- Botón de descarga -->
         <a class="button" href="https://drive.google.com/file/d/1g3dL0iciZRp0p6GFv878j8-h_aE9vdUw/view?usp=drive_link&export=download" download>Descargar APK</a>
     </div>
+
+    <footer>
+        <a href="https://www.termsfeed.com/live/ec104f8b-7306-4f0b-bfdb-7cb3d963019d" target="_blank">Política de Privacidad</a>
+    </footer>
+
+    <script>
+        // Función para alternar entre modos
+        function toggleTheme() {
+            const body = document.body;
+            const button = document.querySelector('.toggle-theme');
+            body.classList.toggle('dark'); // Añade o quita la clase "dark"
+
+            // Cambiar texto del botón
+            if (body.classList.contains('dark')) {
+                button.textContent = "Modo Claro";
+            } else {
+                button.textContent = "Modo Oscuro";
+            }
+        }
+    </script>
 </body>
 </html>
